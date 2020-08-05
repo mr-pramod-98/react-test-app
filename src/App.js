@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LoginForm from './components/authentication/LoginForm';
 import SignUpForm from './components/authentication/SignUpForm';
+import UserProfile from './components/profile/UserProfile';
 import UserInfo from './components/home/UserInfo';
 import './App.css';
 
@@ -15,18 +16,19 @@ class App extends Component {
     render() {
 
         return (
-                <div className="App">
-                    <Router>
+            <div className="App">
+                <Router>
 
-                        <Switch>
-                            <Route exact path="/" >
-                                {this.lodeComponent()} 
-                            </Route>
-                            <Route path="/sign-up" component={SignUpForm} />
-                            <Route>
-                                Page Not Found
-                            </Route>
-                        </Switch>
+                    <Switch>
+                        <Route exact path="/" >
+                            {this.lodeComponent()} 
+                        </Route>
+                        <Route path="/sign-up" component={SignUpForm} />
+                        <Route path="/user-profile" component={UserProfile} />
+                        <Route>
+                            Page Not Found
+                        </Route>
+                    </Switch>
                                
                     </Router>
                     

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import NavigationBar from '../sharedComponents/NavigationBar';
 import FormButton from '../authentication/FormButton';
 import { userLoggedOut } from '../Redux/actionCreators';
 import './css/UserInfo.css'
@@ -11,18 +11,7 @@ class UserInfo extends Component {
 		return (
             <React.Fragment>
 
-                <nav className="nav-bar">
-                    <div className="logo-main">React<samp>App</samp></div>
-                    <ul className="nav-links">
-                        <Link className="links">Profile</Link>
-                        <Link className="links">Delete</Link>
-                        <Link 
-                            className="links"
-                            onClick = { () => this.props.userLoggedOut() }>
-                            Logout
-                        </Link>
-                    </ul>  
-                </nav>
+                <NavigationBar />
                 <div className="container-main">
                     <h1>Hello { this.props.username } :)</h1>
                     <FormButton
