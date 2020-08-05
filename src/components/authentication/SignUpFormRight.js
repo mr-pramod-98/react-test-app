@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import FormButton from './FormButton';
 import './css/LoginFormRight.css'
-import { Link } from 'react-router-dom';
 
-class LoginFormRight extends Component {
+class SignUpFormRight extends Component {
     render() {
 		return (
             <div className="form-right">
                 <div className="welcom-quote">
-                    Start you journey with us by a click.
+                    If you are already a part of our family then, Sing In.
                 </div> 
                 <div className="form-button">
-                    <Link to="/sign-up" >
+                    <Link to="/" >
                         <FormButton
                             type = { 'button' }
-                            value = { 'Sign Up' }
+                            value = { 'Sign In' }
                         />
                     </Link>
                 </div>          
@@ -23,4 +23,4 @@ class LoginFormRight extends Component {
   	}
 }
 
-export default LoginFormRight;
+export default SignUpFormRight;

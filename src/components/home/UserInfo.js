@@ -12,7 +12,7 @@ class UserInfo extends Component {
             <React.Fragment>
 
                 <nav className="nav-bar">
-                    <div className="logo">React<samp>App</samp></div>
+                    <div className="logo-main">React<samp>App</samp></div>
                     <ul className="nav-links">
                         <Link className="links">Profile</Link>
                         <Link className="links">Delete</Link>

@@ -7,6 +7,7 @@ class FormInputField extends Component {
   	render() {
 		return (
 			<input 
+				required
 				id = { this.props.name }
 				type = { this.props.type }
 				name = { this.props.name }

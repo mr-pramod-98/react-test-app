@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LoginForm from './components/authentication/LoginForm';
+import SignUpForm from './components/authentication/SignUpForm';
 import UserInfo from './components/home/UserInfo';
 import './App.css';
 
@@ -18,9 +19,10 @@ class App extends Component {
                     <Router>
 
                         <Switch>
-                            <Route exact path="/">
-                                {this.lodeComponent()}
+                            <Route exact path="/" >
+                                {this.lodeComponent()} 
                             </Route>
+                            <Route path="/sign-up" component={SignUpForm} />
                             <Route>
                                 Page Not Found
                             </Route>

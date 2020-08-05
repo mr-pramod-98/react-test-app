@@ -15,18 +15,18 @@
     align-items: center;
 }
 
-.logo, .logo samp {
+.logo-main, .logo-main samp {
     font-family: Roboto;
     font-size: 14px;
     line-height: 28px;
 }
 
-.logo {
+.logo-main {
     margin-left: 2vw;
     color: #FFFFFF;
 }
 
-.logo samp {
+.logo-main samp {
     color: #000000;
 }
 
