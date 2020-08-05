@@ -4,7 +4,7 @@ import FormButton from './FormButton';
 import FormInputField from './FormInputField'
 import validate from './LoginFormValidation'
 import { userLoggedIn } from '../Redux/actionCreators';
-import './LoginFormLeft.css'
+import './css/LoginFormLeft.css'
 
 
 class LoginFormLeft extends Component {

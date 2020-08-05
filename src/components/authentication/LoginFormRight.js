@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FormButton from './FormButton';
-import './LoginFormRight.css'
+import './css/LoginFormRight.css'
 
 class LoginFormRight extends Component {
     render() {
