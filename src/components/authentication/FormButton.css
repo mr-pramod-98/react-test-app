@@ -1,0 +1,19 @@
+button {
+
+    width: 180px;
+    height: 60px;
+    border-radius: 60px;
+    border: solid 5px;
+    cursor: pointer;
+
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    margin-top: 40px;
+    float: right;
+    transition: linear 0.1s;
+}
+
+button:hover {
+    box-shadow: 2px 2px 4px #746f6f;
+}

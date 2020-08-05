@@ -1,0 +1,19 @@
+.container {
+    background-color: #D8AC3D;
+    background-image: url('./Images/card.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    width: 800px;
+    height: 400px;
+    padding: 50px;
+    padding-top: 25px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+    border-radius: 15px;
+    box-shadow: 6px 6px 4px #746f6f;
+}

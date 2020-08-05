@@ -1,0 +1,51 @@
+.form-left {
+    width: 60%;
+}
+
+.form-header {
+    margin-top: 30px;
+}
+
+.form-wrapper {
+    width: 330px;
+    background-color: #D8AC3D;
+    padding-left: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-input, .form-submit-button {
+    width: 100%;
+}
+
+.form-title, .form-dec, .logo, .logo samp {
+    font-style: normal;
+    font-weight: bold;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+}
+
+.form-title {
+    font-size: 48px;
+    line-height: 56px;
+}
+
+.form-dec {
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.logo, .logo samp {
+    font-family: Roboto;
+    font-size: 14px;
+    line-height: 28px;
+}
+
+.logo {
+    color: #FFFFFF;
+}
+
+.logo samp {
+    color: #000000;
+}
