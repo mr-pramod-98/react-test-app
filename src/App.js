@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import LoginForm from './components/authentication/LoginForm';
 import SignUpForm from './components/authentication/SignUpForm';
 import UserProfile from './components/profile/UserProfile';
@@ -9,8 +9,16 @@ import './App.css';
 
 class App extends Component {  
 
-    lodeComponent = () => {
-        return this.props.isLoggedIn ? <UserInfo /> : <LoginForm />;
+    autenticateUser = () => {
+        return this.props.isLoggedIn ? <Redirect to="/home" />: <LoginForm />;
+    }
+
+    autenticateUserToAccessHome = () => {
+        return this.props.isLoggedIn ? <UserInfo />: <Redirect to="/" />;
+    }
+
+    autenticateUserToAccessProfile = () => {
+        return this.props.isLoggedIn ? <UserProfile />: <Redirect to="/" />;
     }
 
     render() {
@@ -21,10 +29,15 @@ class App extends Component {
 
                     <Switch>
                         <Route exact path="/" >
-                            {this.lodeComponent()} 
+                            { this.autenticateUser() }
+                        </Route>
+                        <Route path="/home" >
+                            { this.autenticateUserToAccessHome() }
                         </Route>
                         <Route path="/sign-up" component={SignUpForm} />
-                        <Route path="/user-profile" component={UserProfile} />
+                        <Route path="/user-profile" >
+                            { this.autenticateUserToAccessProfile() }
+                        </Route>
                         <Route>
                             Page Not Found
                         </Route>
@@ -39,7 +52,6 @@ class App extends Component {
 
 const mapStateToProps = state => {
     return {
-        username: state.username,
         isLoggedIn: state.isLoggedIn
     };
 }
