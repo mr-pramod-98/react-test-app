@@ -1,11 +1,23 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { userLoggedOut } from '../Redux/actionCreators';
+import React, { Component } from 'react'
+import axiosAPI from '../Axios/axios'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { userLoggedOut } from '../Redux/actionCreators'
 import './css/NavigationBar.css'
 
 
 class NavigationBar extends Component {
+
+    deleteUser = () => {
+        axiosAPI.delete(`/${ this.props.username }/delete`)
+            .then(res => {
+                const {status, data} = res;
+                const {msg, user} = data;
+                console.log(`status: ${status}, msg: ${msg}, user: ${user.username}`);
+                this.props.userLoggedOut();
+            })
+    }
+
     render() {
 		return (
             <nav className="nav-bar">
@@ -14,7 +26,12 @@ class NavigationBar extends Component {
                 </Link>
                 <ul className="nav-links">
                     <Link className="links" to="/user-profile">Profile</Link>
-                    <Link className="links" to="/">Delete</Link>
+                    <Link  
+                        to="/"
+                        className="links"
+                        onClick = { this.deleteUser }>
+                        Delete
+                    </Link>
                     <Link 
                         to="/"
                         className="links"
@@ -27,6 +44,11 @@ class NavigationBar extends Component {
   	}
 }
 
+const mapStateToProps = state => {
+    return {
+        username: state.username
+    }
+}
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -34,4 +56,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(NavigationBar);
+export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar);

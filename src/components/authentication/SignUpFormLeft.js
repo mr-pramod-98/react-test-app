@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
 import FormButton from './FormButton';
 import FormInputField from './FormInputField'
-import validate from './LoginFormValidation'
-import { userLoggedIn } from '../Redux/actionCreators';
+import validate from './SignUpFormValidation'
+import axiosAPI from '../Axios/axios';
 import './css/LoginFormLeft.css'
 
 
@@ -22,10 +21,20 @@ class SignUpFormLeft extends Component {
         if(validate(this.state.username, this.state.email, this.state.password)){
 
             // TODO:/ add user to database
+            const newUser = {
+                username: this.state.username,
+                email: this.state.email,
+                password: this.state.password
+            }
+            axiosAPI.post('/sign-up', newUser)
+                .then(res => console.log(res.data))
+                .catch(err => {
+                    const {status, data} = err.response;
+                    console.log(`status: ${status}, msg: ${data.msg}`);
+                });
 
-            this.props.userLoggedIn()
         } else {
-            alert("User already exist");
+            alert("All fields are requried");
         }
     }
 
@@ -77,17 +86,5 @@ class SignUpFormLeft extends Component {
   	}
 }
 
-const mapStateToProps = state => {
-    return {
-        username: state.username,
-        password: state.password
-    }
-}
 
-const mapDispatchToProps = dispatch => {
-    return {
-        userLoggedIn: () => dispatch(userLoggedIn())
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpFormLeft);
+export default SignUpFormLeft;

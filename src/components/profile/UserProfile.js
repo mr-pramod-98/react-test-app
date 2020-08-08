@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import NavigationBar from '../sharedComponents/NavigationBar';
 import './css/UserProfile.css'
 
@@ -15,9 +16,9 @@ class UserProfile extends Component {
 
                     <form className="form">
 
-                        <input type="text" name="username" placeholder="pramod_0098"/>
-                        <input type="email" name="email" placeholder="pramod@gmail.com"/>
-                        <input type="password" name="password" placeholder="reactApp"/>
+                        <input type="text" name="username" placeholder={ this.props.username } readOnly/>
+                        <input type="email" name="email" placeholder={ this.props.email }/>
+                        <input type="password" name="password" placeholder={ this.props.password } />
                         <button type="submit" >Update</button>
                             
                     </form>
@@ -28,6 +29,13 @@ class UserProfile extends Component {
   	}
 }
 
+const mapStateToProps = state => {
+    return {
+        username: state.username,
+        email: state.email,
+        password: state.password
+    }
+}
 
 
-export default UserProfile;
+export default connect(mapStateToProps)(UserProfile);

@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import FormButton from './FormButton';
+import React, { Component } from 'react'
+import FormButton from './FormButton'
 import FormInputField from './FormInputField'
 import validate from './LoginFormValidation'
-import { userLoggedIn } from '../Redux/actionCreators';
+import { userStored } from '../Redux/actionCreators'
+import store from '../Redux/store'
+import axiosAPI from '../Axios/axios'
 import './css/LoginFormLeft.css'
 
 
@@ -18,10 +19,27 @@ class LoginFormLeft extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        if(validate(this.state.username, this.props.username, this.state.password, this.props.password)){
-            this.props.userLoggedIn()
+        if(validate(this.state.username, this.state.password)){
+
+            // authenticate user
+            const user = {
+                username: this.state.username,
+                password: this.state.password
+            }
+            axiosAPI.post("/", user)
+                .then(res => {
+                    const {status, data} = res;
+                    const {msg, user} = data;
+                    console.log(`status: ${status}, msg: ${msg}`);
+                    store.dispatch(userStored(user.username, user.email, user.password));
+                })
+                .catch(err => {
+                    const {status, data} = err.response;
+                    console.log(`status: ${status}, msg: ${data.msg}`);
+                });
+
         } else {
-            alert("User Dose not exist");
+            alert("User fields are requried");
         }
     }
 
@@ -67,17 +85,5 @@ class LoginFormLeft extends Component {
   	}
 }
 
-const mapStateToProps = state => {
-    return {
-        username: state.username,
-        password: state.password
-    }
-}
 
-const mapDispatchToProps = dispatch => {
-    return {
-        userLoggedIn: () => dispatch(userLoggedIn())
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(LoginFormLeft);
+export default LoginFormLeft;

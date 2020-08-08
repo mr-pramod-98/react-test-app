@@ -1,5 +1,5 @@
-function validate(username, redux_username, password, redux_password) {
-    if(username !== redux_username || password !== redux_password){
+function validate(username, password) {
+    if(!username || !password ){
         return false;
     }else {
         return true;

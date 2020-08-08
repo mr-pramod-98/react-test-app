@@ -1,10 +1,13 @@
 import * as actions from './actionTypes';
 
-export function userLoggedIn() {
-    console.log("Logged in");
+export function userStored(username, email, password) {
+    console.log("user stored");
     return {
-        type: actions.USER_LOGGED_IN,
-        paylode: {
+        type: actions.USER_STORED,
+        payload: {
+            username,
+            email,
+            password,
             isLoggedIn: true
         }
     }
@@ -14,7 +17,7 @@ export function userLoggedOut() {
     console.log("Logged out");
     return {
         type: actions.USER_LOGGED_OUT,
-        paylode: {
+        payload: {
             isLoggedIn: false
         }
     }

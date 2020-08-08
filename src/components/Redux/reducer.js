@@ -1,22 +1,31 @@
 import * as actions from './actionTypes'
 
-
-function reducer(state = {
-    username: 'pramod_0098',
-    password: 'reactApp',
+const initialState = {
+    username: 'username',
+    email: 'username@domail.com',
+    password: 'password',
     isLoggedIn: false
-}, action) {
+}
+
+function reducer(state = initialState, action) {
     switch(action.type){
-        case actions.USER_LOGGED_IN:
+        case actions.USER_STORED:
+            console.log(Object.keys(action))
             return {
                 ...state,
-                isLoggedIn: true
+                username: action.payload.username,
+                email: action.payload.email,
+                password: action.payload.password,
+                isLoggedIn: action.payload.isLoggedIn
             };
 
         case actions.USER_LOGGED_OUT:
             return {
                 ...state,
-                isLoggedIn: false
+                username: initialState.username,
+                email: initialState.email,
+                password: initialState.password,
+                isLoggedIn: initialState.isLoggedIn
             };
 
         default:
