@@ -10,13 +10,20 @@ const initialState = {
 function reducer(state = initialState, action) {
     switch(action.type){
         case actions.USER_STORED:
-            console.log(Object.keys(action))
             return {
                 ...state,
                 username: action.payload.username,
                 email: action.payload.email,
                 password: action.payload.password,
                 isLoggedIn: action.payload.isLoggedIn
+            };
+
+        case actions.USER_UPDATED:
+            return {
+                ...state,
+                username: action.payload.username,
+                email: action.payload.email,
+                password: action.payload.password,
             };
 
         case actions.USER_LOGGED_OUT:

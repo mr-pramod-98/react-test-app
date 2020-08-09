@@ -13,6 +13,18 @@ export function userStored(username, email, password) {
     }
 }
 
+export function userUpdated(username, email, password) {
+    console.log("user updates");
+    return {
+        type: actions.USER_UPDATED,
+        payload: {
+            username,
+            email,
+            password
+        }
+    }
+}
+
 export function userLoggedOut() {
     console.log("Logged out");
     return {
