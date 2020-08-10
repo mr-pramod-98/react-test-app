@@ -1,5 +1,7 @@
 import * as actions from './actionTypes';
 
+// for users
+
 export function userStored(username, email, password) {
     console.log("user stored");
     return {
@@ -10,7 +12,7 @@ export function userStored(username, email, password) {
             password,
             isLoggedIn: true
         }
-    }
+    };
 }
 
 export function userUpdated(username, email, password) {
@@ -22,7 +24,7 @@ export function userUpdated(username, email, password) {
             email,
             password
         }
-    }
+    };
 }
 
 export function userLoggedOut() {
@@ -31,6 +33,17 @@ export function userLoggedOut() {
         type: actions.USER_LOGGED_OUT,
         payload: {
             isLoggedIn: false
+        }
+    };
+}
+
+// for window
+export function showStatus(status, message) {
+    return {
+        type: actions.SHOW_STATUS,
+        payload: {
+            message,
+            status
         }
     }
 }

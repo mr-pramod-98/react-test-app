@@ -21,10 +21,25 @@ class App extends Component {
         return this.props.isLoggedIn ? <UserProfile />: <Redirect to="/" />;
     }
 
+    loadMessage = () => {
+        if(this.props.message){
+            const alert = "alert alert-" + this.props.status;
+        
+            return (
+                <div className={ alert } style={{ width: '100%', display: 'flex', justifyContent: 'center', position: 'absolute'}}>
+                    <strong>{ this.props.status }</strong> {': '} {this.props.message }
+                </div>
+            );
+        }
+    }
+
     render() {
 
         return (
             <div className="App">
+
+                { this.loadMessage() }
+                
                 <Router>
 
                     <Switch>
@@ -43,16 +58,18 @@ class App extends Component {
                         </Route>
                     </Switch>
                                
-                    </Router>
+                </Router>
                     
-                </div>
+            </div>
         );
     }
 }
 
 const mapStateToProps = state => {
     return {
-        isLoggedIn: state.isLoggedIn
+        isLoggedIn: state.userReducer.isLoggedIn,
+        message: state.windowReducer.message,
+        status: state.windowReducer.status
     };
 }
 

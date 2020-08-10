@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import FormButton from './FormButton'
 import FormInputField from './FormInputField'
 import validate from './LoginFormValidation'
-import { userStored } from '../Redux/actionCreators'
+import { userStored, showStatus } from '../Redux/actionCreators'
 import store from '../Redux/store'
 import axiosAPI from '../Axios/axios'
 import './css/LoginFormLeft.css'
@@ -30,16 +30,18 @@ class LoginFormLeft extends Component {
                 .then(res => {
                     const {status, data} = res;
                     const {msg, user} = data;
-                    console.log(`status: ${status}, msg: ${msg}`);
+                    //console.log(`status: ${status}, msg: ${msg}`);
+                    store.dispatch(showStatus("success", msg));
                     store.dispatch(userStored(user.username, user.email, user.password));
                 })
                 .catch(err => {
                     const {status, data} = err.response;
+                    store.dispatch(showStatus("warning", data.msg));
                     console.log(`status: ${status}, msg: ${data.msg}`);
                 });
 
         } else {
-            alert("User fields are requried");
+            alert("All fields are requried");
         }
     }
 

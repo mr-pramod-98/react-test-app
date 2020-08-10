@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import FormButton from './FormButton';
 import FormInputField from './FormInputField'
 import validate from './SignUpFormValidation'
+import { showStatus } from '../Redux/actionCreators'
+import store from '../Redux/store'
 import axiosAPI from '../Axios/axios';
 import './css/LoginFormLeft.css'
 
@@ -30,7 +32,8 @@ class SignUpFormLeft extends Component {
                 .then(res => console.log(res.data))
                 .catch(err => {
                     const {status, data} = err.response;
-                    console.log(`status: ${status}, msg: ${data.msg}`);
+                    store.dispatch(showStatus("warning", data.msg));
+                    //console.log(`status: ${status}, msg: ${data.msg}`);
                 });
 
         } else {

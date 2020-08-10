@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import store from '../Redux/store';
-import { userUpdated } from '../Redux/actionCreators';
+import { userUpdated, showStatus } from '../Redux/actionCreators';
 import NavigationBar from '../sharedComponents/NavigationBar';
 import axiosAPI from '../Axios/axios'
 import './css/UserProfile.css'
@@ -36,12 +36,14 @@ class UserProfile extends Component {
             .then(res => {
                 const {status, data} = res;
                 const {msg, user} = data;
-                console.log(`status: ${status}, msg: ${msg}`);
+                //console.log(`status: ${status}, msg: ${msg}`);
+                store.dispatch(showStatus("success", msg));
                 store.dispatch(userUpdated(user.username, user.email, user.password));
             })
             .catch(err => {
                 const {status, data} = err.response;
-                console.log(`status: ${status}, msg: ${data.msg}`);
+                store.dispatch(showStatus("warning", data.msg));
+                //console.log(`status: ${status}, msg: ${data.msg}`);
             });
     }
 
@@ -79,9 +81,9 @@ class UserProfile extends Component {
 
 const mapStateToProps = state => {
     return {
-        username: state.username,
-        email: state.email,
-        password: state.password
+        username: state.userReducer.username,
+        email: state.userReducer.email,
+        password: state.userReducer.password
     }
 }
 

@@ -1,14 +1,19 @@
 import * as actions from './actionTypes'
 
-const initialState = {
+const initialStateUser = {
     username: 'username',
     email: 'username@domail.com',
     password: 'password',
     isLoggedIn: false
 }
 
-function reducer(state = initialState, action) {
-    switch(action.type){
+const initialStateWindow = {
+    message: '',
+    status: ''
+}
+
+export function userReducer(state = initialStateUser, action) {
+    switch(action.type) {
         case actions.USER_STORED:
             return {
                 ...state,
@@ -29,10 +34,10 @@ function reducer(state = initialState, action) {
         case actions.USER_LOGGED_OUT:
             return {
                 ...state,
-                username: initialState.username,
-                email: initialState.email,
-                password: initialState.password,
-                isLoggedIn: initialState.isLoggedIn
+                username: initialStateUser.username,
+                email: initialStateUser.email,
+                password: initialStateUser.password,
+                isLoggedIn: initialStateUser.isLoggedIn
             };
 
         default:
@@ -40,4 +45,17 @@ function reducer(state = initialState, action) {
     }
 }
 
-export default reducer;
+export function windowReducer(state = initialStateWindow, action) {
+    switch(action.type) {
+        case actions.SHOW_STATUS:
+            return {
+                ...state,
+                message: action.payload.message,
+                status: action.payload.status
+            };
+
+        default:
+            return state;
+    }
+}
+ 
